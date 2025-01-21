@@ -1,0 +1,21 @@
+services:
+
+  pdfding:
+    image: mrmn/pdfding:latest
+    container_name: pdfding
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - sqlite_data:/home/nonroot/pdfding/db
+      - media:/home/nonroot/pdfding/media
+    environment:
+      - DEFAULT_THEME=dark
+      - DEFAULT_THEME_COLOR=blue
+      - HOST_NAME=127.0.0.1
+      - SECRET_KEY=some_secret
+      - CSRF_COOKIE_SECURE=FALSE
+      - SESSION_COOKIE_SECURE=FALSE
+volumes:
+  sqlite_data:
+  media:  
